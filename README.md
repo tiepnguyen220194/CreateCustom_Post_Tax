@@ -1,5 +1,4 @@
-# CustomPost_CustomTaxonomy
-CustomPost_CustomTaxonomy
+# CreateCustom_Post_Tax
 
 Coppy vào file function.php và thưởng thức .
 
