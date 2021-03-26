@@ -1,22 +1,22 @@
 <?php
-function create_post_type($title,$name,$slug,$support){
+// CTP Service
     $labels = array(
-        'name' => __( $title, 'text_domain' ),
-        'singular_name' => __( $title, 'text_domain' ),
+        'name' => __( 'Service', 'text_domain' ),
+        'singular_name' => __( 'Dịch vụ', 'text_domain' ),
         'add_new' => __( 'Add New', 'text_domain' ),
         'add_new_item' => __( 'Add New', 'text_domain' ),
-        'edit_item' => __( 'Edit '.$title, 'text_domain' ),
-        'new_item' => __( 'New '.$title, 'text_domain' ),
-        'all_items' => __( 'All '.$title, 'text_domain' ),
-        'view_item' => __( 'View '.$title, 'text_domain' ),
-        'search_items' => __( 'Search '.$title, 'text_domain' ),
+        'edit_item' => __( 'Edit', 'text_domain' ),
+        'new_item' => __( 'New', 'text_domain' ),
+        'all_items' => __( 'All', 'text_domain' ),
+        'view_item' => __( 'View', 'text_domain' ),
+        'search_items' => __( 'Search', 'text_domain' ),
         'not_found' => __( 'No post found', 'text_domain' ),
         'not_found_in_trash' => __( 'No post found in Trash', 'text_domain' ),
         'parent_item_colon' => '',
-        'menu_name' => __( $title, 'text_domain' ),
+        'menu_name' => __( 'Dịch vụ', 'text_domain' ),
 
-        'name_admin_bar'        => __( $title, 'text_domain' ),
-        'archives'              => __( $title, 'text_domain' ),
+        'name_admin_bar'        => __( 'Dịch vụ', 'text_domain' ),
+        'archives'              => __( 'Dịch vụ', 'text_domain' ),
         'attributes'            => __( 'Item Attributes', 'text_domain' ),
         'update_item'           => __( 'Update Item', 'text_domain' ),
         'view_items'            => __( 'View Items', 'text_domain' ),
@@ -39,32 +39,32 @@ function create_post_type($title,$name,$slug,$support){
         'show_in_menu' => true,
         'hierarchical' => false,
         'menu_position' => null,
-        'rewrite' => array( 'slug' => __( $slug, 'text_domain' )),
-        'supports' => __( $support, 'text_domain' ),
+        'rewrite' => array( 'slug' => __( 'service', 'text_domain' )),
+        'supports' => __( array( 'title','editor','thumbnail','excerpt','comments'), 'text_domain' ),
         'show_in_admin_bar'     => true,
         'show_in_nav_menus'     => true,
         'can_export'            => true,
-        'has_archive'           => __( $name, 'text_domain' ), // show page archive
+        'has_archive'           => __( 'service', 'text_domain' ), // show page archive
         'exclude_from_search'   => false,
         'capability_type'       => 'page',
+        'taxonomies' => array('category'),  // Thêm dòng này để đồng bộ all Category của all ctp. Nhớ thêm Function create_post_type vào hàm add_action( 'init', 'create_post_type' ). (Lưu ý : Đồng bộ Category rồi thì ko dùng hàm tạo Taxonomy bên dưới nữa)
     );
-    register_post_type($name, $args );
-}
-/* Thêm thông tin taxonomy  */
-function create_taxonomy_theme($title="Category",$slug,$name,$post_type) {
+    register_post_type('service', $args );
+
+// Taxonomy Partner
     $labels = array(
-        'name' => __( $title, 'text_domain' ),
-        'singular' => __( $title, 'text_domain' ),
-        'menu_name' => __( $title, 'text_domain' ),
+        'name' => __( 'Chuyên mục dịch vụ', 'text_domain' ),
+        'singular' => __( 'Chuyên mục dịch vụ', 'text_domain' ),
+        'menu_name' => __( 'Chuyên mục dịch vụ', 'text_domain' ),
     );
     $args = array(
         'labels' => __( $labels, 'text_domain' ),
         'show_admin_column' => true,
         'hierarchical' => true,
         'public' => true,
-        'rewrite' => array('slug' => __( $slug, 'text_domain' )),
+        'rewrite' => array('slug' => __( 'service-cat', 'text_domain' )),
         'show_tagcloud' => true,
     );
-    register_taxonomy($name,$post_type,$args);
-}
+    register_taxonomy('service-cat','service',$args);
+
 ?>
