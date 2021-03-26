@@ -1,7 +1,11 @@
-# CreateCustom_Post_Tax
+# CTPost_CTTax
 
 Coppy vào file function.php và thưởng thức .
 
-create_post_type("Dự án","duan","duan",array( 'title','editor','thumbnail','excerpt','comments'));
+/* Create CTPost */
+// (title, slug_code, slug)
+create_post_type("Dịch vụ","service","dichvu");
 
-create_taxonomy_theme("Danh mục Dự án","danhmuc-duan","danhmuc-duan","duan");
+/* Create CTTax */
+// (title, slug, slug_code, post_type)
+create_taxonomy_theme("Danh mục Dịch vụ","danhmuc-dichvu","service-cat","service");
